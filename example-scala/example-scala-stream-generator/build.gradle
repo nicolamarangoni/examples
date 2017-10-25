@@ -1,0 +1,76 @@
+description = 'Scala tool for generating random text or JSON streams'
+apply plugin: 'base'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'scala'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = '1.8'
+version = '0.1.0'
+mainClassName = 'io.marangoni.scala.stream.generator.Generator'
+
+jar {
+    manifest {
+		attributes 'Implementation-Title': 'example-scala-stream-generator', 'Implementation-Version': version, 'Main-Class': mainClassName
+    }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+	classifier "sources"
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use 'jcenter' for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+	compile "org.scala-lang:scala-library:2.11.+"
+	compile "com.typesafe.scala-logging:scala-logging_2.11:+"
+    // The production code uses the SLF4J logging API at compile time
+    //compile 'org.slf4j:slf4j-api:1.7.21'
+
+    // Declare the dependency for your favourite test framework you want to use in your tests.
+    // TestNG is also supported by the Gradle Test task. Just change the
+    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
+    // 'test.useTestNG()' to your build script.
+    testCompile 'junit:junit:4.12'
+}
+
+artifacts {
+	archives sourceJar
+}
+
+uploadArchives {
+    repositories {
+		mavenDeployer {
+			repository(url: "file:///Software/Maven/")
+		}
+    }
+}
+
+publishing {
+	
+	repositories {
+		maven {
+			url "C:/Software/Maven"
+		}
+	}
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+			artifact sourceJar
+			groupId 'io.marangoni'
+			artifactId 'example-scala-stream-generator'
+			version version
+		}
+	}
+}
+
