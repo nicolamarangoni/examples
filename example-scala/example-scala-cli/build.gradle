@@ -44,11 +44,11 @@ dependencies {
     // 'test.useTestNG()' to your build script.
     // testCompile 'junit:junit:4.12'
 	
-	compile 'io.marangoni:scala-json:+'
-	compile 'io.marangoni:scala-hbase:+'
-	compile 'io.marangoni:scala-stream-generator:+'
-	compile 'io.marangoni:spark-jdbc:+'
-	compile 'io.marangoni:spark-streaming:+'
+	compile 'io.marangoni:example-scala-json:+'
+	compile 'io.marangoni:example-scala-hbase:+'
+	compile 'io.marangoni:example-scala-stream-generator:+'
+	compile 'io.marangoni:example-spark-jdbc:+'
+	compile 'io.marangoni:example-spark-streaming:+'
 }
 
 artifacts {
