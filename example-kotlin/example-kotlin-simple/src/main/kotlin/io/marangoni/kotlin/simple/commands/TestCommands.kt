@@ -15,7 +15,7 @@ public class TestCommands: CommandMarker {
 		return true;
 	}
 	
-	@CliCommand(value = "hw simple", help = "Print a simple hello world message")
+	@CliCommand(value = ["hw simple"], help = "Print a simple hello world message")
 	fun hello (
 			@CliOption(key = arrayOf("message"), mandatory = true, help = "The hello world message") message: String,
 			@CliOption(key = arrayOf("name1"), mandatory = true, help = "Say hello to the first name") name1: String,

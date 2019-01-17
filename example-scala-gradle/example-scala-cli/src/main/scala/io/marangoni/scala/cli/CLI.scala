@@ -5,9 +5,9 @@ import java.util.{Date, Calendar, Properties}
 import java.io.FileInputStream
 import io.marangoni.spark.jdbc.{JDBCDF}
 import io.marangoni.scala.stream.generator.{TextGenerator, SocketExecutor}
-//import io.marangoni.scala.hbase.{Connection}
+import io.marangoni.scala.hbase.{Connection}
 import io.marangoni.scala.json.{Extractor, RandomGenerator, GeneratorFromTemplate}
-//import io.marangoni.spark.streaming.{SparkStream, DataFrame, Database}
+import io.marangoni.spark.streaming.{SparkStream, DataFrame, Database}
 
 //class CLI
 
@@ -68,8 +68,8 @@ object CLI extends Object with LazyLogging {
     else {
       loadProperties(defaultPropertyFile)
     }
-
-    /*if (action == "json-extract") {
+    
+    if (action == "json-extract") {
       jsonExtract
     }
     else if (action == "json-random-generate") {
@@ -78,10 +78,10 @@ object CLI extends Object with LazyLogging {
     else if (action == "json-generate-from-template") {
       generateFromTemplate
     }
-    /*else if (action == "hbase-connect") {
+    else if (action == "hbase-connect") {
       hBaseConnect
-    }*/
-    else*/ if (action == "generate-log-files") {
+    }
+    else if (action == "generate-log-files") {
       logger.info("Generate random log files")
       TextGenerator.generateFiles
     }
@@ -96,16 +96,16 @@ object CLI extends Object with LazyLogging {
     else if (action == "spark-jdbc-load-table") {
       loadTable
     }
-    /*else if (action == "spark-streaming") {
+    else if (action == "spark-streaming") {
       SparkStream.start
-    }*/
+    }
     else {
       logger.info("Action not found!")
     }
     
   }
   
-  /*def jsonExtract {
+  def jsonExtract {
     
     Extractor.sourceFile = sourceFile
     Extractor.selectedElements = selectedElements
@@ -134,9 +134,9 @@ object CLI extends Object with LazyLogging {
     
     GeneratorFromTemplate.printTemplate
     
-  }*/
+  }
   
-  /*def hBaseConnect {
+  def hBaseConnect {
     
     Connection.zkQuorum = zkQuorum
     Connection.zkPort = zkPort
@@ -144,7 +144,7 @@ object CLI extends Object with LazyLogging {
     
     Connection.connect
     
-  }*/
+  }
   
   def loadTable {
     
@@ -368,7 +368,7 @@ object CLI extends Object with LazyLogging {
     
     
     // Spark streaming properties
-    /*if (properties.containsKey("source.inputType")) {
+    if (properties.containsKey("source.inputType")) {
       SparkStream.inputType = properties.getProperty("source.inputType")
     }
     // folder source
@@ -445,7 +445,7 @@ object CLI extends Object with LazyLogging {
     }
     if (properties.containsKey("db.whereClause")) {
       DataFrame.whereClause = properties.getProperty("db.whereClause")
-    }*/
+    }
     
   }
   

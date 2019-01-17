@@ -1,9 +1,18 @@
 package io.marangoni.spark.jdbc
 
 import com.typesafe.scalalogging._
+import java.util.Properties
+import java.sql.{Driver, DriverManager}
 import org.apache.spark._
+import org.apache.spark.streaming._
 import org.apache.spark.sql._
-
+import org.apache.spark.streaming.twitter._
+import twitter4j.Status
+import org.apache.kafka.clients.consumer.ConsumerRecord
+import org.apache.kafka.common.serialization.StringDeserializer
+import org.apache.spark.streaming.kafka010._
+import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
+import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
 
 object JDBCDF extends Object with LazyLogging {
   
