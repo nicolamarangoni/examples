@@ -15,7 +15,7 @@ skip in publish := true
 
 // PROJECTS
 
-lazy val simple = (project in file("example-spark-simple"))
+lazy val sparkSimple = (project in file("example-spark-simple"))
   .settings(
     organization := orgName,
     name := "example-spark-simple",
