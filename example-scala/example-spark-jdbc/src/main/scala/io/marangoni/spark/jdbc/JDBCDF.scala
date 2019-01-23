@@ -3,6 +3,7 @@ package io.marangoni.spark.jdbc
 import com.typesafe.scalalogging._
 import org.apache.spark._
 import org.apache.spark.sql._
+import org.apache.spark.sql.jdbc.JdbcDialects
 
 
 object JDBCDF extends Object with LazyLogging {
@@ -25,7 +26,9 @@ object JDBCDF extends Object with LazyLogging {
     
     println("########################################################")
     println("Starting spark session")
-    
+
+    JdbcDialects.registerDialect(ExasolDialect)
+
     val conf = new SparkConf().setAppName(appName).setMaster(master)
     val spark = SparkSession
       .builder()

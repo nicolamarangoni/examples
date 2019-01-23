@@ -1,3 +1,5 @@
+enablePlugins(PackPlugin)
+
 lazy val scalaV = "2.11.12"
 
 lazy val orgName = "io.marangoni"
@@ -16,10 +18,12 @@ skip in publish := true
 // PROJECTS
 
 lazy val cli = (project in file("example-scala-cli"))
+  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-cli",
     settings,
     libraryDependencies ++= commonDependencies ++ Seq(
+      dependencies.playJson,
       dependencies.exampleScalaJson,
       dependencies.exampleScalaStreamGenerator,
       dependencies.exampleSparkJdbc
@@ -28,6 +32,7 @@ lazy val cli = (project in file("example-scala-cli"))
   )
 
 lazy val simple = (project in file("example-scala-simple"))
+  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-simple",
     settings,
@@ -36,6 +41,7 @@ lazy val simple = (project in file("example-scala-simple"))
   )
 
 lazy val cassandra = (project in file("example-scala-cassandra"))
+  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-cassandra",
     settings,
@@ -48,6 +54,7 @@ lazy val cassandra = (project in file("example-scala-cassandra"))
   )
 
 /*lazy val hbase = (project in file("example-scala-hbase"))
+  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-hbase",
     settings,
@@ -58,6 +65,7 @@ lazy val cassandra = (project in file("example-scala-cassandra"))
   )*/
 
 lazy val hive = (project in file("example-scala-hive"))
+  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-hive",
     settings,
@@ -68,6 +76,7 @@ lazy val hive = (project in file("example-scala-hive"))
   )
 
 lazy val json = (project in file("example-scala-json"))
+  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-json",
     settings,
@@ -78,6 +87,7 @@ lazy val json = (project in file("example-scala-json"))
   )
 
 lazy val streamGenerator = (project in file("example-scala-stream-generator"))
+  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-stream-generator",
     settings,
@@ -86,6 +96,7 @@ lazy val streamGenerator = (project in file("example-scala-stream-generator"))
   )
 
 lazy val sparkSimple = (project in file("example-spark-simple"))
+  .enablePlugins(PackPlugin)
   .settings(
     organization := orgName,
     name := "example-spark-simple",
@@ -95,6 +106,7 @@ lazy val sparkSimple = (project in file("example-spark-simple"))
   )
 
 /*lazy val sparkStreaming = (project in file("example-spark-streaming"))
+  .enablePlugins(PackPlugin)
   .settings(
     organization := orgName,
     name := "example-spark-streaming",
@@ -103,14 +115,15 @@ lazy val sparkSimple = (project in file("example-spark-simple"))
     assemblySettings
   )*/
 
+
 lazy val sparkJdbc = (project in file("example-spark-jdbc"))
+  .enablePlugins(PackPlugin)
   .settings(
     name := "example-spark-jdbc",
     settings,
     libraryDependencies ++= commonDependencies ++ sparkDependencies ++ jdbcDependencies,
     assemblySettings
   )
-
 
 // DEPENDENCIES
 
@@ -138,30 +151,30 @@ lazy val dependencies =
     val scalaLogging = "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingV
     val playJson = "com.typesafe.play" %% "play-json" % playJsonV
 
-    val sparkCore = "org.apache.spark" %% "spark-core" % sparkV
-    val sparkSQL = "org.apache.spark" %% "spark-sql" % sparkV
-    val sparkStreaming = "org.apache.spark" %% "spark-streaming" % sparkV
-    val sparkStreamingKafka = "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkV
-    val sparkStreamingTwitter = "org.apache.bahir" %% "spark-streaming-twitter" % bahirV
+    val sparkCore = "org.apache.spark" %% "spark-core" % sparkV % "provided"
+    val sparkSQL = "org.apache.spark" %% "spark-sql" % sparkV % "provided"
+    val sparkStreaming = "org.apache.spark" %% "spark-streaming" % sparkV % "provided"
+    val sparkStreamingKafka = "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkV % "provided"
+    val sparkStreamingTwitter = "org.apache.bahir" %% "spark-streaming-twitter" % bahirV % "provided"
 
-    val jdbcMaria = "org.mariadb.jdbc" % "mariadb-java-client" % jdbcMariaV
-    val jdbcPostgre = "org.postgresql" % "postgresql" % jdbcPostgreV
-    val jdbcFirebird = "org.firebirdsql.jdbc" % "jaybird-jdk18" % jdbcFirebirdV
-    val jdbcJTDS = "net.sourceforge.jtds" % "jtds" % jdbcJTDSV
-    val jdbcNuo = "com.nuodb.jdbc" % "nuodb-jdbc" % jdbcNuoV
-    val jdbcHSQL = "org.hsqldb" % "hsqldb" % jdbcHSQLV
-    val jdbcH2 = "com.h2database" % "h2" % jdbcH2V
-    val jdbcDerby = "org.apache.derby" % "derby" % jdbcDerbyV
-    val jdbcDerbyClient = "org.apache.derby" % "derbyclient" % jdbcDerbyV
-    val jdbcDerbyNet = "org.apache.derby" % "derbynet" % jdbcDerbyV
-    val jdbcDerbyTools = "org.apache.derby" % "derbytools" % jdbcDerbyV
-    val jdbcDerbyOptionalTools = "org.apache.derby" % "derbyoptionaltools" % jdbcDerbyV
-    val jdbcHive = "org.apache.hive" % "hive-jdbc" % jdbcHiveV
+    val jdbcMaria = "org.mariadb.jdbc" % "mariadb-java-client" % jdbcMariaV % "provided"
+    val jdbcPostgre = "org.postgresql" % "postgresql" % jdbcPostgreV % "provided"
+    val jdbcFirebird = "org.firebirdsql.jdbc" % "jaybird-jdk18" % jdbcFirebirdV % "provided"
+    val jdbcJTDS = "net.sourceforge.jtds" % "jtds" % jdbcJTDSV % "provided"
+    val jdbcNuo = "com.nuodb.jdbc" % "nuodb-jdbc" % jdbcNuoV % "provided"
+    val jdbcHSQL = "org.hsqldb" % "hsqldb" % jdbcHSQLV % "provided"
+    val jdbcH2 = "com.h2database" % "h2" % jdbcH2V % "provided"
+    val jdbcDerby = "org.apache.derby" % "derby" % jdbcDerbyV % "provided"
+    val jdbcDerbyClient = "org.apache.derby" % "derbyclient" % jdbcDerbyV % "provided"
+    val jdbcDerbyNet = "org.apache.derby" % "derbynet" % jdbcDerbyV % "provided"
+    val jdbcDerbyTools = "org.apache.derby" % "derbytools" % jdbcDerbyV % "provided"
+    val jdbcDerbyOptionalTools = "org.apache.derby" % "derbyoptionaltools" % jdbcDerbyV % "provided"
+    val jdbcHive = "org.apache.hive" % "hive-jdbc" % jdbcHiveV % "provided"
     
-    val hbaseClient = "org.apache.hbase" % "hbase-client" % hbaseClientV
-    val cassandraDriverCore = "com.datastax.cassandra" % "cassandra-driver-core" % cassandraDriverV
-    val cassandraDriverMapping = "com.datastax.cassandra" % "cassandra-driver-mapping" % cassandraDriverV
-    val cassandraDriverExtras = "com.datastax.cassandra" % "cassandra-driver-extras" % cassandraDriverV
+    val hbaseClient = "org.apache.hbase" % "hbase-client" % hbaseClientV % "provided"
+    val cassandraDriverCore = "com.datastax.cassandra" % "cassandra-driver-core" % cassandraDriverV % "provided"
+    val cassandraDriverMapping = "com.datastax.cassandra" % "cassandra-driver-mapping" % cassandraDriverV % "provided"
+    val cassandraDriverExtras = "com.datastax.cassandra" % "cassandra-driver-extras" % cassandraDriverV % "provided"
 
     val exampleScalaJson = "io.marangoni" %% "example-scala-json" % "+"
     //val exampleScalaHbase = "io.marangoni" %% "example-scala-hbase" % "+"
