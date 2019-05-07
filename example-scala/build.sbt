@@ -1,5 +1,3 @@
-enablePlugins(PackPlugin)
-
 lazy val scalaV = "2.11.12"
 
 lazy val orgName = "io.marangoni"
@@ -18,7 +16,6 @@ skip in publish := true
 // PROJECTS
 
 lazy val cli = (project in file("example-scala-cli"))
-  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-cli",
     settings,
@@ -32,7 +29,6 @@ lazy val cli = (project in file("example-scala-cli"))
   )
 
 lazy val simple = (project in file("example-scala-simple"))
-  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-simple",
     settings,
@@ -41,7 +37,6 @@ lazy val simple = (project in file("example-scala-simple"))
   )
 
 lazy val cassandra = (project in file("example-scala-cassandra"))
-  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-cassandra",
     settings,
@@ -54,7 +49,6 @@ lazy val cassandra = (project in file("example-scala-cassandra"))
   )
 
 /*lazy val hbase = (project in file("example-scala-hbase"))
-  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-hbase",
     settings,
@@ -65,7 +59,6 @@ lazy val cassandra = (project in file("example-scala-cassandra"))
   )*/
 
 lazy val hive = (project in file("example-scala-hive"))
-  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-hive",
     settings,
@@ -76,7 +69,6 @@ lazy val hive = (project in file("example-scala-hive"))
   )
 
 lazy val json = (project in file("example-scala-json"))
-  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-json",
     settings,
@@ -87,7 +79,6 @@ lazy val json = (project in file("example-scala-json"))
   )
 
 lazy val streamGenerator = (project in file("example-scala-stream-generator"))
-  .enablePlugins(PackPlugin)
   .settings(
     name := "example-scala-stream-generator",
     settings,
@@ -96,7 +87,6 @@ lazy val streamGenerator = (project in file("example-scala-stream-generator"))
   )
 
 lazy val sparkSimple = (project in file("example-spark-simple"))
-  .enablePlugins(PackPlugin)
   .settings(
     organization := orgName,
     name := "example-spark-simple",
@@ -106,7 +96,6 @@ lazy val sparkSimple = (project in file("example-spark-simple"))
   )
 
 /*lazy val sparkStreaming = (project in file("example-spark-streaming"))
-  .enablePlugins(PackPlugin)
   .settings(
     organization := orgName,
     name := "example-spark-streaming",
@@ -117,7 +106,6 @@ lazy val sparkSimple = (project in file("example-spark-simple"))
 
 
 lazy val sparkJdbc = (project in file("example-spark-jdbc"))
-  .enablePlugins(PackPlugin)
   .settings(
     name := "example-spark-jdbc",
     settings,
